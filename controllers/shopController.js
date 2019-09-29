@@ -15,6 +15,12 @@ exports.getProducts = async (req, res, next) => {
   // });
 };
 
+exports.getProduct = async (req, res, next) => {
+  const prodId = req.params.productId;
+  console.log(prodId);
+  res.redirect('/');
+};
+
 exports.getIndex = async (req, res, next) => {
   res.render('shop/index', {
     prods: await Product.fetchAll(),
