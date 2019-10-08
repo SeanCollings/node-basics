@@ -36,4 +36,9 @@ module.exports = class Product {
   static fetchAll() {
     return getProductsFromFile();
   }
+
+  static async findById(id) {
+    const products = await getProductsFromFile();
+    return products.find(p => p.id === id);
+  }
 };

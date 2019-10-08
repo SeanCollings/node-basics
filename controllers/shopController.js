@@ -17,8 +17,12 @@ exports.getProducts = async (req, res, next) => {
 
 exports.getProduct = async (req, res, next) => {
   const prodId = req.params.productId;
-  console.log(prodId);
-  res.redirect('/');
+  const product = await Product.findById(prodId);
+  res.render('shop/product-detail', {
+    product,
+    pageTitle: product.title,
+    path: '/products'
+  });
 };
 
 exports.getIndex = async (req, res, next) => {
@@ -36,10 +40,16 @@ exports.getCart = (req, res, next) => {
   });
 };
 
+exports.postCart = (req, res, next) => {
+  const prodId = req.body.productId;
+  console.log(prodId);
+  res.redirect('/cart');
+};
+
 exports.getOrders = (req, res, next) => {
   res.render('shop/orders', {
     path: '/orders',
-    pageTitle: 'Your ORders'
+    pageTitle: 'Your Orders'
   });
 };
 
